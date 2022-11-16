@@ -283,6 +283,7 @@ let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeWinSize = 50
 let g:NERDTreeMapOpenInTabSilent='T'
+let g:NERDTreeShowHidden=1
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,*node_modules/
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
