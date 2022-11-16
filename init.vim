@@ -431,6 +431,10 @@ endif
 "" Copy/Paste/Cut
 if has('wsl')
   set clipboard=unnamedplus
+
+  " Adds support for windows clipboard access by 
+  " removing carriage return char represented as ^M
+  nnoremap p p:%s/\r/<ESC>
 endif
 
 noremap YY "+y<CR>
