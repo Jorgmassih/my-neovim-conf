@@ -430,18 +430,6 @@ endif
 "" Copy/Paste/Cut
 if has('wsl')
   set clipboard=unnamedplus
-  let g:clipboard = {
-		  \   'name': 'custom-cp',
-		  \   'copy': {
-		  \      '+': 'xclip -sel clip',
-		  \      '*': 'xclip -sel clip',
-		  \    },
-		  \   'paste': {
-		  \      '+': 'wsl-paste',
-		  \      '*': 'wsl-paste',
-		  \   },
-		  \   'cache_enabled': 0,
-		  \ }
 endif
 
 noremap YY "+y<CR>
