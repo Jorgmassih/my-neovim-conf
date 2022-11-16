@@ -432,21 +432,19 @@ endif
 
 "" Copy/Paste/Cut
 if has('wsl')
-
-set clipboard=unnamedplus
-let g:clipboard = {
-                        \   'name': 'custom-cp',
-                        \   'copy': {
-                        \      '+': 'xclip -sel clip',
-                        \      '*': 'xclip -sel clip',
-                        \    },
-                        \   'paste': {
-                        \      '+': 'xclip -o -sel clip',
-                        \      '*': 'xclip -o -sel clip',
-                        \   },
-                        \   'cache_enabled': 0
-                        \ }
-
+  set clipboard=unnamedplus
+  let g:clipboard = {
+		  \   'name': 'custom-cp',
+		  \   'copy': {
+		  \      '+': 'xclip -sel clip',
+		  \      '*': 'xclip -sel clip',
+		  \    },
+		  \   'paste': {
+		  \      '+': 'wsl-paste',
+		  \      '*': 'wsl-paste',
+		  \   },
+		  \   'cache_enabled': 0,
+		  \ }
 endif
 
 noremap YY "+y<CR>
@@ -454,9 +452,9 @@ noremap <leader>p "+gP<CR>
 noremap XX "+x<CR>
 
 if has('macunix')
-  " pbcopy for OSX copy/paste
-  vmap <C-x> :!pbcopy<CR>
-  vmap <C-c> :w !pbcopy<CR><CR>
+" pbcopy for OSX copy/paste
+vmap <C-x> :!pbcopy<CR>
+vmap <C-c> :w !pbcopy<CR><CR>
 endif
 
 "" Buffer nav
