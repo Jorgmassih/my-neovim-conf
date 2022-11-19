@@ -90,3 +90,10 @@ tnoremap <leader><ESC> <C-\><C-n>
         autocmd BufRead,BufNewFile *.go set filetype=go
         autocmd FileType go nnoremap <F5> :call MonkeyTerminalExec('go run ' . expand('%'))<cr>
     augroup END
+
+" Specify commands for Dockerfiles
+    augroup go
+        autocmd!
+        autocmd BufRead,BufNewFile Dockerfile.* set filetype=dockerfile
+        autocmd FileType dockerfile nnoremap <F5> :call MonkeyTerminalExec('docker build -f ' . expand('%') . ' .')<cr>
+    augroup END
