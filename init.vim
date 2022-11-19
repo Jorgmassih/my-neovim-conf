@@ -624,6 +624,16 @@ let python_highlight_all = 1
 "*****************************************************************************
 "*****************************************************************************
 
+"*****************************************************************************
+"" Include others configs files
+"*****************************************************************************
+
+"" Include all .vim files inside config dir
+for f in split(glob('~/.config/nvim/additional-conf/*.vim'), '\n')
+    exe 'source' f
+endfor
+
+
 "" Include user's local vim config
 if filereadable(expand("~/.rc.local"))
   source ~/.rc.local
