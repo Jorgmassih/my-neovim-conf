@@ -95,7 +95,7 @@ tnoremap <leader><ESC> <C-\><C-n>
     augroup END
 
 " Specify commands for Dockerfiles
-    augroup go
+    augroup dockerfile
         autocmd!
         autocmd BufRead,BufNewFile Dockerfile* set filetype=dockerfile
         autocmd FileType dockerfile nnoremap <F5> :call MonkeyTerminalExec('docker build -f ' . expand('%') . ' .')<cr>
