@@ -28,15 +28,13 @@ if !filereadable(vimplug_exists)
   autocmd VimEnter * PlugInstall
 endif
 
-"*****************************************************************************
-"" Include others configs files
-"*****************************************************************************
-let additional_conf_dir = '~/.config/nvim/additional-conf'
 
-"" Include all .vim files inside config dir
-for f in split(glob(additional_conf_dir . '/*.vim'), '\n')
-  exe 'source ' f
-endfor
+"" Include plugins file
+let conf_dir = '~/.config/nvim'
+let additional_conf_dir = conf_dir . '/additional-conf'
+
+let plugin_file_path = conf_dir . '/plugins.vim'
+exe 'source' plugin_file_path
 
 
 "*****************************************************************************
@@ -83,6 +81,11 @@ let g:session_autoload = "no"
 let g:session_autosave = "no"
 let g:session_command_aliases = 1
 
+
+"" Include all .vim files inside config dir
+for f in split(glob(additional_conf_dir . '/*.vim'), '\n')
+  exe 'source ' f
+endfor
 
 "*****************************************************************************
 "" Visual Settings
@@ -172,6 +175,7 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
+let g:airline_powerline_fonts = 1
 
 
 "*****************************************************************************

@@ -28,7 +28,6 @@ Plug 'bagrat/vim-buffet'
 " Code facilities
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
