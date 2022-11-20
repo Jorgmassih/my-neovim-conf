@@ -28,14 +28,6 @@ if !filereadable(vimplug_exists)
   autocmd VimEnter * PlugInstall
 endif
 
-"*****************************************************************************
-"" Include others configs files
-"*****************************************************************************
-
-"" Include all .vim files inside config dir
-for f in split(glob('~/.config/nvim/additional-conf/*.vim'), '\n')
-    exe 'source' f
-endfor
 
 " Required:
 call plug#begin()
@@ -633,6 +625,14 @@ let python_highlight_all = 1
 "*****************************************************************************
 "*****************************************************************************
 
+"*****************************************************************************
+"" Include others configs files
+"*****************************************************************************
+
+"" Include all .vim files inside config dir
+for f in split(glob('~/.config/nvim/additional-conf/*.vim'), '\n')
+    exe 'source' f
+endfor
 
 "" Include user's local vim config
 if filereadable(expand("~/.rc.local"))

@@ -40,7 +40,10 @@ function! MonkeyTerminalOpen()
   endif
   " Always enter in insert mode
   startinsert
+  " Remove numbers
   setlocal nonumber norelativenumber
+  " Disable mouse support
+  setlocal mouse=
 endfunction
 
 function! MonkeyTerminalToggle()
@@ -94,6 +97,6 @@ tnoremap <leader><ESC> <C-\><C-n>
 " Specify commands for Dockerfiles
     augroup go
         autocmd!
-        autocmd BufRead,BufNewFile Dockerfile.* set filetype=dockerfile
+        autocmd BufRead,BufNewFile Dockerfile* set filetype=dockerfile
         autocmd FileType dockerfile nnoremap <F5> :call MonkeyTerminalExec('docker build -f ' . expand('%') . ' .')<cr>
     augroup END
