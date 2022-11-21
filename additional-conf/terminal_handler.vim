@@ -1,4 +1,4 @@
-" This is a Copy and Paste of this gist: https://gist.github.com/ram535/b1b7af6cd7769ec0481eb2eed549ea23
+" This's a modification of the initial work of this gist: https://gist.github.com/ram535/b1b7af6cd7769ec0481eb2eed549ea23
 "
 " With this function you can reuse the same terminal in neovim.
 " You can toggle the terminal and also send a command to the same terminal.
