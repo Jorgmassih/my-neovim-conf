@@ -46,6 +46,9 @@ set fileencoding=utf-8
 set fileencodings=utf-8
 set ttyfast
 
+"" Activate modifiable
+set modifiable
+
 "" Fix backspace indent
 set backspace=indent,eol,start
 
@@ -458,33 +461,6 @@ augroup vimrc-javascript
 augroup END
 
 
-" php
-" Phpactor plugin
-" Include use statement
-nmap <Leader>u :call phpactor#UseAdd()<CR>
-" Invoke the context menu
-nmap <Leader>mm :call phpactor#ContextMenu()<CR>
-" Invoke the navigation menu
-nmap <Leader>nn :call phpactor#Navigate()<CR>
-" Goto definition of class or class member under the cursor
-nmap <Leader>oo :call phpactor#GotoDefinition()<CR>
-nmap <Leader>oh :call phpactor#GotoDefinition('hsplit')<CR>
-nmap <Leader>ov :call phpactor#GotoDefinition('vsplit')<CR>
-nmap <Leader>ot :call phpactor#GotoDefinition('tabnew')<CR>
-" Show brief information about the symbol under the cursor
-nmap <Leader>K :call phpactor#Hover()<CR>
-" Transform the classes in the current file
-nmap <Leader>tt :call phpactor#Transform()<CR>
-" Generate a new class (replacing the current file)
-nmap <Leader>cc :call phpactor#ClassNew()<CR>
-" Extract expression (normal mode)
-nmap <silent><Leader>ee :call phpactor#ExtractExpression(v:false)<CR>
-" Extract expression from selection
-vmap <silent><Leader>ee :<C-U>call phpactor#ExtractExpression(v:true)<CR>
-" Extract method from selection
-vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
-
-
 " python
 " vim-python
 augroup vimrc-python
@@ -515,7 +491,8 @@ let g:airline#extensions#virtualenv#enabled = 1
 " Syntax highlight
 let python_highlight_all = 1
 
-
+"" Path to python venv
+let g:python3_host_prog = '/home/plusi/projects/my-neovim-conf/py_nvim_env/bin/python'
 
 "*****************************************************************************
 "*****************************************************************************
