@@ -344,16 +344,19 @@ endif
 
 "" Copy/Paste/Cut
 if has('wsl')
-  set clipboard=unnamedplus
-
-  " Adds support for windows clipboard access by 
-  " removing carriage return char represented as ^M
-  nnoremap p p:%s/\r/<ESC>
+  let g:clipboard = {
+    \ 'name': 'Win32yank Clipboard',
+    \ 'copy': {
+    \   '+': 'win32yank.exe -i --crlf',
+    \   '*': 'win32yank.exe -i --crlf'
+    \   },
+    \ 'paste': {
+    \   '+': 'win32yank.exe -o --lf',
+    \   '*': 'win32yank.exe -o --lf'
+    \   }
+    \ }
 endif
 
-noremap YY "+y<CR>
-noremap <leader>p "+gP<CR>
-noremap XX "+x<CR>
 
 if has('macunix')
 " pbcopy for OSX copy/paste
