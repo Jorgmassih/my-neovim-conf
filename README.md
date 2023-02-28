@@ -16,11 +16,15 @@ ln -s $(pwd)/additional-conf $HOME/.config/nvim/additional-conf
 
 ## Using custom Python env
 To use a custom Python env for nvim you must to create a new env with python.
+Using the root folder for vim configuration is recomended. Additionally, the `env` folder must be called `py_nvim_env`. 
+
 ```shell
+# Creates a new env file
 python3 -m venv py_nvim_env
+# Activare env file
+source ./py_nvim_env/bin/activate
+# Install neo vim python dependency
+python -m pip install neovim
+# Deactivate environment (optionally)
+deactivate
 ```
-
-After that set `g:python3_host_prog = /path/to/python/`
-
-
-> Note: [Vim-Plug](https://github.com/junegunn/vim-plug#neovim) must be installed in order to load pluggins properly.
