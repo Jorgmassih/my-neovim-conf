@@ -495,7 +495,7 @@ let g:airline#extensions#virtualenv#enabled = 1
 let python_highlight_all = 1
 
 "" Path to python venv
-let g:python3_host_prog = expand("%:p:h") . '/py_nvim_env/bin/python'
+let g:python3_host_prog = expand("$HOME") . '/.config/nvim/py_nvim_env/bin/python'
 
 "*****************************************************************************
 "*****************************************************************************
