@@ -27,6 +27,7 @@ Plug 'bagrat/vim-buffet'
 
 " Code facilities
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'easymotion/vim-easymotion'
 
 " Markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
