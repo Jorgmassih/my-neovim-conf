@@ -28,6 +28,9 @@ Plug 'bagrat/vim-buffet'
 " Code facilities
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Markdown preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
