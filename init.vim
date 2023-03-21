@@ -11,9 +11,8 @@ else
 endif
 
 let g:vim_bootstrap_langs = "c,go,html,javascript,php,python"
-let g:vim_bootstrap_editor = ""				" nvim or vim
-let g:vim_bootstrap_theme = "molokai"
-let g:vim_bootstrap_frams = ""
+"let g:vim_bootstrap_editor = 				" nvim or vim
+"let g:vim_bootstrap_frams = 
 
 if !filereadable(vimplug_exists)
   if !executable(curl_exists)
@@ -98,8 +97,7 @@ set ruler
 set number
 
 let no_buffers_menu=1
-colorscheme molokai
-
+colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
 " Better command line completion 
 set wildmenu
@@ -172,7 +170,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'catppuccin'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
