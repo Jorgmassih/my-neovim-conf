@@ -85,6 +85,10 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
+" Plugin inspired in Gitlens for VsCode
+Plug 'APZelos/blamer.nvim'
+
+
 
 "*****************************************************************************
 "*****************************************************************************
