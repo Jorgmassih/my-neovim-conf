@@ -1,3 +1,14 @@
+" Set the coc.nvim root extension
+let g:coc_global_extensions = ['coc-pyright']
+
+" Specify Python language server
+let g:coc_server_python = {
+    \ 'command': 'python',
+    \ 'args': ['-m', 'pyls', '--stdio'],
+    \ 'rootPatterns': ['pyproject.toml', 'setup.py', '.git'],
+    \ 'filetypes': ['python']
+    \ }
+
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
