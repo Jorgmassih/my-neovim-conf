@@ -7,6 +7,14 @@ call plug#begin()
 " NERDTree
 Plug 'preservim/nerdtree'
 
+" Telescope Finder
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
+" Telescope dependencies
+" IMPORTANT: BurntSushi/ripgrep is a suggested dependency, checkout the
+" documentation in order to install it in your operating system.
+Plug 'nvim-lua/plenary.nvim' "Required
+
+
 " Commentary tool
 Plug 'tpope/vim-commentary'
 
