@@ -4,18 +4,21 @@ call plug#begin()
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-Plug 'scrooloose/nerdtree'
+" NERDTree
+Plug 'preservim/nerdtree'
+
+" Commentary tool
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'vim-scripts/grep.vim'
-Plug 'vim-scripts/CSApprox'
-Plug 'Raimondi/delimitMate'
-Plug 'majutsushi/tagbar'
-Plug 'dense-analysis/ale'
+
+" Show indent lines
 Plug 'Yggdroot/indentLine'
-Plug 'editor-bootstrap/vim-bootstrap-updater'
-Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
+
+" Select specified word accross the entire document
+Plug 'majutsushi/tagbar'
+
+" Automatic closing of quotes, parenthesis, brackets, etc.
+Plug 'Raimondi/delimitMate'
+
 " Visual
 Plug 'tomasr/molokai'
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -25,6 +28,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bagrat/vim-buffet'
+Plug 'vim-scripts/CSApprox'
 
 " Code facilities
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -33,17 +37,6 @@ Plug 'easymotion/vim-easymotion'
 " Markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
-if isdirectory('/usr/local/opt/fzf')
-  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-else
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-  Plug 'junegunn/fzf.vim'
-endif
-let g:make = 'gmake'
-if exists('make')
-        let g:make = 'make'
-endif
-Plug 'Shougo/vimproc.vim', {'do': g:make}
 
 "" Vim-Session
 Plug 'xolox/vim-misc'
