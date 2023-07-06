@@ -219,11 +219,8 @@ nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
-" grep.vim
-nnoremap <silent> <leader>f :Rgrep<CR>
-let Grep_Default_Options = '-IR'
-let Grep_Skip_Files = '*.log *.db'
-let Grep_Skip_Dirs = '.git node_modules'
+" Prevent buffer loads within NERDTree window
+autocmd BufWinLeave * if &filetype == 'nerdtree' | call interrupt() | endif
 
 " terminal emulation
 nnoremap <silent> <leader>sh :terminal<CR>
@@ -285,10 +282,6 @@ nnoremap <leader>ss :SaveSession<Space>
 nnoremap <leader>sd :DeleteSession<CR>
 nnoremap <leader>sc :CloseSession<CR>
 
-"" Tabs
-nnoremap <Tab> gt
-nnoremap <S-Tab> gT
-
 " snippets
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -328,17 +321,19 @@ vmap <C-x> :!pbcopy<CR>
 vmap <C-c> :w !pbcopy<CR><CR>
 endif
 
+"" Tabs
+nnoremap <leader><Tab> gt
+nnoremap <leader><S-Tab> gT
+
 "" Buffer nav
-noremap <leader>z :bp<CR>
-noremap <leader>q :bp<CR>
-noremap <leader>x :bn<CR>
-noremap <leader>w :bn<CR>
+noremap <S-Tab> :bp<CR>
+noremap <Tab> :bn<CR>
 
 "" Close buffer
 noremap <leader>c :bd<CR>
 
 "" Clean search (highlight)
-nnoremap <silent> <leader><space> :noh<cr>
+nnoremap <Esc><Esc> :noh<cr>
 
 "" Switching windows
 noremap <C-j> <C-w>j
@@ -352,7 +347,7 @@ vmap > >gv
 
 "" Move visual block
 vnoremap J :m '>+1<CR>gv=gv
-vnorema/ K :m '<-2<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 
 "*****************************************************************************
