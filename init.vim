@@ -1,5 +1,4 @@
 " vim-bootstrap 2022-11-15 16:26:32
-
 "*****************************************************************************
 "" Vim-Plug core
 "*****************************************************************************
@@ -35,6 +34,8 @@ let additional_conf_dir = conf_dir . '/additional-conf'
 let plugin_file_path = conf_dir . '/plugins.vim'
 exe 'source' plugin_file_path
 
+lua require('init')
+
 
 "*****************************************************************************
 "" Basic Setup
@@ -59,6 +60,9 @@ set expandtab
 
 "" Map leader to ,
 let mapleader=','
+
+"" Set termguicolors
+set termguicolors
 
 "" Enable hidden buffers
 set hidden
@@ -97,18 +101,13 @@ set ruler
 set number
 
 let no_buffers_menu=1
-colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
+colorscheme catppuccin-frappe " catppuccin-latte, catppuccin, catppuccin-macchiato, catppuccin-mocha
 
 " Better command line completion 
 set wildmenu
 
 " mouse support
 set mouse=a
-
-set mousemodel=popup
-set t_Co=256
-set guioptions=egmrti
-set gfn=Monospace\ 10
 
 if has("gui_running")
   if has("gui_mac") || has("gui_macvim")
@@ -140,7 +139,6 @@ if &term =~ '256color'
   set t_ut=
 endif
 
-
 "" Disable the blinking cursor.
 set gcr=a:blinkon0
 
@@ -165,15 +163,11 @@ set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-if exists("*fugitive#statusline")
-  set statusline+=%{fugitive#statusline()}
-endif
-
 " vim-airline
 let g:airline_theme = 'catppuccin'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
 let g:airline_powerline_fonts = 1
@@ -209,9 +203,10 @@ let g:NERDTreeIgnore=['node_modules','\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqli
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
 let g:nerdtree_tabs_focus_on_files=1
-let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
+"let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeWinSize = 25
-let g:NERDTreeMapOpenInTabSilent='T'
+"let g:NERDTreeMapOpenInTabSilent='T'
+"let g:NERDTreeMapOpenInTab='t'
 let g:NERDTreeShowHidden=1
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,*node_modules/
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -219,8 +214,13 @@ nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
-" Prevent buffer loads within NERDTree window
-autocmd BufWinLeave * if &filetype == 'nerdtree' | call interrupt() | endif
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+" Mirror the NERDTree before showing it. This makes it the same on all tabs.
+nnoremap <C-n> :NERDTreeMirror<CR>:NERDTreeFocus<CR>
 
 " terminal emulation
 nnoremap <silent> <leader>sh :terminal<CR>
@@ -322,8 +322,8 @@ vmap <C-c> :w !pbcopy<CR><CR>
 endif
 
 "" Tabs
-nnoremap <leader><Tab> gt
-nnoremap <leader><S-Tab> gT
+"nnoremap <S-Tab> gt
+"nnoremap <Tab> gT
 
 "" Buffer nav
 noremap <S-Tab> :bp<CR>

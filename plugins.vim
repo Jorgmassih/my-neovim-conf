@@ -8,12 +8,14 @@ call plug#begin()
 Plug 'preservim/nerdtree'
 
 " Telescope Finder
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
 " Telescope dependencies
 " IMPORTANT: BurntSushi/ripgrep is a suggested dependency, checkout the
 " documentation in order to install it in your operating system.
 Plug 'nvim-lua/plenary.nvim' "Required
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
 
+" Git Visulizer
+Plug 'tanvirtin/vgit.nvim'
 
 " Commentary tool
 Plug 'tpope/vim-commentary'
@@ -28,15 +30,16 @@ Plug 'majutsushi/tagbar'
 Plug 'Raimondi/delimitMate'
 
 " Visual
-Plug 'tomasr/molokai'
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'bagrat/vim-buffet'
 Plug 'vim-scripts/CSApprox'
+
+" Tabs and buffers manager
+Plug 'nvim-tree/nvim-web-devicons' " Recommended (for coloured icons)
+Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 
 " Code facilities
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -83,10 +86,6 @@ Plug 'jelera/vim-javascript-syntax'
 
 " python
 "" Python Bundle
-
-" Plugin inspired in Gitlens for VsCode
-Plug 'APZelos/blamer.nvim'
-
 
 
 "*****************************************************************************
