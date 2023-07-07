@@ -12,6 +12,10 @@ ln -s $(pwd)/plugins.vim $HOME/.config/nvim/plugins.vim
 
 # Create a symlink for additional configs dir
 ln -s $(pwd)/additional-conf $HOME/.config/nvim/additional-conf
+
+
+# Create a symlink for lua configs dir
+ln -s $(pwd)/lua $HOME/.config/nvim/lua
 ```
 
 ## Using custom Python env
