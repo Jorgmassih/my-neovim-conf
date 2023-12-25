@@ -30,32 +30,38 @@ Plug 'majutsushi/tagbar'
 Plug 'Raimondi/delimitMate'
 
 " Visual
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-Plug 'ryanoasis/vim-devicons'
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-scripts/CSApprox'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' } " Color scheme
+Plug 'ryanoasis/vim-devicons' " Icons
+Plug 'mg979/vim-visual-multi', {'branch': 'master'} " Multiple cursors
+Plug 'vim-airline/vim-airline' " Status bar
+Plug 'vim-airline/vim-airline-themes' " Themes for vim-airline
+Plug 'vim-scripts/CSApprox' " For 256 colors
+Plug 'yasuhiroki/github-actions-yaml.vim' " Github Actions syntax highlight
 
 " Tabs and buffers manager
-Plug 'nvim-tree/nvim-web-devicons' " Recommended (for coloured icons)
-Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
+Plug 'lewis6991/gitsigns.nvim' " OPTIONAL: for git status
+Plug 'nvim-tree/nvim-web-devicons' " OPTIONAL: for file icons
+Plug 'romgrk/barbar.nvim' " Buffer bar
 
 " Code facilities
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'easymotion/vim-easymotion'
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Code completion
+Plug 'easymotion/vim-easymotion' " Easy motion
+Plug 'github/copilot.vim' " Github Copilot
 
 " Markdown preview
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' } " Markdown preview
 
 
 "" Vim-Session
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
+Plug 'xolox/vim-misc' " Required
+Plug 'xolox/vim-session' " Required
 
 "" Snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' 
+Plug 'honza/vim-snippets' 
+
+"" Terminal
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 
 "*****************************************************************************
 "" Custom bundles

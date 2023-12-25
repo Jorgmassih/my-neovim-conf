@@ -1,4 +1,57 @@
-" vim-bootstrap 2022-11-15 16:26:32
+"*****************************************************************************
+"" Basic Setup
+"*****************************************************************************"
+"" Encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+set ttyfast
+
+" mouse support
+set mouse=a
+
+"" Set termguicolors
+set termguicolors
+
+"" Map leader to ,
+let mapleader=','
+
+"" Activate modifiable
+set modifiable
+
+"" Fix backspace indent
+set backspace=indent,eol,start
+
+"" Tabs. May be overridden by autocmd rules
+set tabstop=4
+set softtabstop=0
+set shiftwidth=4
+set expandtab
+
+"" Enable hidden buffers
+""set hidden
+
+"" Searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+set fileformats=unix,dos,mac
+
+if exists('$SHELL')
+    set shell=$SHELL
+else
+    set shell=/bin/sh
+endif
+
+" session management
+let g:session_directory = "~/./session"
+let g:session_autoload = "no"
+let g:session_autosave = "no"
+let g:session_command_aliases = 1
+
+
 "*****************************************************************************
 "" Vim-Plug core
 "*****************************************************************************
@@ -36,58 +89,6 @@ exe 'source' plugin_file_path
 
 lua require('init')
 
-
-"*****************************************************************************
-"" Basic Setup
-"*****************************************************************************"
-"" Encoding
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8
-set ttyfast
-
-"" Activate modifiable
-set modifiable
-
-"" Fix backspace indent
-set backspace=indent,eol,start
-
-"" Tabs. May be overridden by autocmd rules
-set tabstop=4
-set softtabstop=0
-set shiftwidth=4
-set expandtab
-
-"" Map leader to ,
-let mapleader=','
-
-"" Set termguicolors
-set termguicolors
-
-"" Enable hidden buffers
-set hidden
-
-"" Searching
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-
-set fileformats=unix,dos,mac
-
-if exists('$SHELL')
-    set shell=$SHELL
-else
-    set shell=/bin/sh
-endif
-
-" session management
-let g:session_directory = "~/./session"
-let g:session_autoload = "no"
-let g:session_autosave = "no"
-let g:session_command_aliases = 1
-
-
 "" Include all .vim files inside config dir
 for f in split(glob(additional_conf_dir . '/*.vim'), '\n')
   exe 'source ' f
@@ -100,14 +101,12 @@ syntax on
 set ruler
 set number
 
-let no_buffers_menu=1
+""let no_buffers_menu=1
 colorscheme catppuccin-frappe " catppuccin-latte, catppuccin, catppuccin-macchiato, catppuccin-mocha
 
 " Better command line completion 
 set wildmenu
 
-" mouse support
-set mouse=a
 
 if has("gui_running")
   if has("gui_mac") || has("gui_macvim")
@@ -167,7 +166,7 @@ nnoremap N Nzzzv
 let g:airline_theme = 'catppuccin'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
 let g:airline_powerline_fonts = 1
@@ -188,6 +187,7 @@ cnoreabbrev Wqa wqa
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
+cnoreabbrev wqa w\|%bd\|q 
 
 "" Commentaries configuration
 noremap <leader># :Commentary<CR>
@@ -202,11 +202,9 @@ let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore=['node_modules','\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
-let g:nerdtree_tabs_focus_on_files=1
-"let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-let g:NERDTreeWinSize = 25
-"let g:NERDTreeMapOpenInTabSilent='T'
-"let g:NERDTreeMapOpenInTab='t'
+let g:nerdtree_tabs_focus_on_files=""
+let g:NERDTreeMapOpenInTabSilent='T'
+let g:NERDTreeMapOpenInTab='t'
 let g:NERDTreeShowHidden=1
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,*node_modules/
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -214,16 +212,16 @@ nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
+" Start NERDTree. If a file is specified, move the cursor to its window.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
-" Mirror the NERDTree before showing it. This makes it the same on all tabs.
-nnoremap <C-n> :NERDTreeMirror<CR>:NERDTreeFocus<CR>
-
-" terminal emulation
-nnoremap <silent> <leader>sh :terminal<CR>
 
 
 "*****************************************************************************
@@ -266,16 +264,6 @@ set autoread
 noremap <Leader>hh :<C-u>split<CR>
 noremap <Leader>vv :<C-u>vsplit<CR>
 
-"" Git
-noremap <Leader>ga :Gwrite<CR>
-noremap <Leader>gc :Git commit --verbose<CR>
-noremap <Leader>gsh :Git push<CR>
-noremap <Leader>gll :Git pull<CR>
-noremap <Leader>gs :Git<CR>
-noremap <Leader>gb :Git blame<CR>
-noremap <Leader>gd :Gvdiffsplit<CR>
-noremap <Leader>gr :GRemove<CR>
-
 " session management
 nnoremap <leader>so :OpenSession<Space>
 nnoremap <leader>ss :SaveSession<Space>
@@ -283,8 +271,8 @@ nnoremap <leader>sd :DeleteSession<CR>
 nnoremap <leader>sc :CloseSession<CR>
 
 " snippets
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
+""let g:UltiSnipsExpandTrigger="<tab>"
+""let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsEditSplit="vertical"
 
@@ -322,15 +310,15 @@ vmap <C-c> :w !pbcopy<CR><CR>
 endif
 
 "" Tabs
-"nnoremap <S-Tab> gt
-"nnoremap <Tab> gT
+""nnoremap <S-Tab> gt
+""nnoremap <Tab> gT
 
 "" Buffer nav
-noremap <S-Tab> :bp<CR>
-noremap <Tab> :bn<CR>
+""noremap <leader><S-Tab> :bp<CR>
+""noremap <leader><Tab> :bn<CR>
 
 "" Close buffer
-noremap <leader>c :bd<CR>
+""noremap <leader>c :bd<CR>
 
 "" Clean search (highlight)
 nnoremap <Esc><Esc> :noh<cr>
@@ -447,7 +435,7 @@ endif
 
 if !exists('g:airline_powerline_fonts')
   let g:airline#extensions#tabline#left_sep = ' '
-  let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#left_alt_sep = '|'
   let g:airline_left_sep          = '▶'
   let g:airline_left_alt_sep      = '»'
   let g:airline_right_sep         = '◀'
